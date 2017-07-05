@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<components arch="linux-x86">
+	<EPICS_BASE.EpicsEnvSet key="EPICS_CA_MAX_ARRAY_BYTES" value="4000000"/>
+	<EPICS_BASE.StartupCommand command="asynSetTraceMask CAM1.HDF 0 0x19" name="trace" post_init="True"/>
+	<EPICS_BASE.StartupCommand command="dbpf TESTSIMDETECTOR:HDF:FilePath, /scratch/tmp/hdf5" name="filepath" post_init="True"/>
+	<EPICS_BASE.StartupCommand command="dbpf TESTSIMDETECTOR:HDF:FileName, test" name="filename" post_init="True"/>
+	<EPICS_BASE.StartupCommand command="dbpf TESTSIMDETECTOR:HDF:FileTemplate, %s%s_%d.hdf" name="filetemplate" post_init="True"/>
+	<EPICS_BASE.StartupCommand command="dbpf TESTSIMDETECTOR:HDF:NDAttributesFile, /scratch/support/ad1-7_hdf5/hdf5attributes.xml" name="attrxml" post_init="True"/>
+	<EPICS_BASE.StartupCommand command="dbpf TESTSIMDETECTOR:CAM:NDAttributesFile, /scratch/support/ad1-7_hdf5/simattributes.xml" name="camattrxml" post_init="True"/>
+	<areaDetector.simDetector ADDR="0" BUFFERS="80" HEIGHT="2678" P="TESTSIMDETECTOR" PORT="CAM1.CAM" R=":CAM:" TIMEOUT="1" WIDTH="4008"/>
+	<areaDetector.NDFileHDF5 ADDR="0" NDARRAY_ADDR="0" NDARRAY_PORT="CAM1.CAM" P="TESTSIMDETECTOR" PORT="CAM1.HDF" QUEUE="70" R=":HDF:" TIMEOUT="1"/>
+	<areaDetector.NDFileHDF5 ADDR="0" NDARRAY_ADDR="0" NDARRAY_PORT="CAM1.CAM" P="TESTSIMDETECTOR" PORT="CAM1.HDF2" QUEUE="10" R=":HDF2:" TIMEOUT="1"/>
+	<areaDetector.NDFileTIFF ADDR="0" NDARRAY_ADDR="0" NDARRAY_PORT="CAM1.CAM" P="TESTSIMDETECTOR" PORT="CAM1.TIF" QUEUE="50" R=":TIF:" TIMEOUT="1"/>
+	<records.waveform FTVL="CHAR" name="attrFileName" record="TESTSIMDETECTOR:CAM:NDAttributesFile"/>
+	<records.longin name="attrFileNumber" record="TESTSIMDETECTOR:CAM:FileNumber"/>
+	<records.stringout DTYP="Soft Channel" VAL="prefix" name="filePrefix" record="TESTSIMDETECTOR:CAM:FilePrefix"/>
+	<records.stringout DTYP="Soft Channel" VAL="CAM1.HDF" name="fileDest" record="TESTSIMDETECTOR:CAM:FileDest"/>
+</components>

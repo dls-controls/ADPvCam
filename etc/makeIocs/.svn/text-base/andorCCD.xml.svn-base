@@ -1,0 +1,7 @@
+<?xml version="1.0" ?>
+<components arch="linux-x86">
+	<areaDetector.andorCCD ADDR="0" INSTALLPATH="/usr/local/etc/andor" P="TESTANDORCCD" PORT="AND.AND" R=":AND:" TIMEOUT="1"/>
+	<!--<EPICS_BASE.StartupCommand command="asynSetTraceIOMask(&quot;AND.AND&quot;,-1,0x2)"/>-->
+	<!--<EPICS_BASE.StartupCommand command="asynSetTraceMask(&quot;AND.AND&quot;,-1,0x11) "/>-->
+	<areaDetector.NDStdArrays ADDR="0" FTVL="SHORT" NDARRAY_ADDR="0" NDARRAY_PORT="AND.AND" NELEMENTS="8000000" P="TESTANDORCCD" PORT="AND.ARR" R=":ARR:" TIMEOUT="1" TYPE="Int16"/>
+</components>
